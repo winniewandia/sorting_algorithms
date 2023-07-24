@@ -9,7 +9,7 @@
 
 void bubble_sort(int *array, size_t size)
 {
-	size_t i, temp;
+	size_t i, temp, last_unsorted;
 	bool issorted = false;
 
 	if (size < 2)
@@ -19,10 +19,11 @@ void bubble_sort(int *array, size_t size)
 	}
 	else
 	{
+		last_unsorted = size - 1;
 		while (!issorted)
 		{
 			issorted = true;
-			for (i = 0; i < size - 1; i++)
+			for (i = 0; i < last_unsorted; i++)
 			{
 				if (array[i] > array[i + 1])
 				{
@@ -33,6 +34,7 @@ void bubble_sort(int *array, size_t size)
 					issorted = false;
 				}
 			}
+			last_unsorted--;
 		}
 		if (issorted)
 			return;
