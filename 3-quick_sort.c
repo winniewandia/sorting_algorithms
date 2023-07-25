@@ -42,25 +42,34 @@ void quick(int *array, int start, int end, int size)
 
 int partition(int *array, int start, int end, int size)
 {
-	int pivot = array[end];
+	int pivot;
 	int temp;
-	int i = start - 1;
+	int i;
 	int j;
 
+	i = end;
+	pivot = start;
 	for (j = start; j <= end - 1; j++)
 	{
-		if (array[j] < pivot)
+		if (array[j] < array[i])
 		{
-			i++;
-			temp = array[i];
-			array[i] = array[j];
-			array[j] = temp;
+			if (j != pivot)
+			{
+				temp = array[j];
+				array[j] = array[pivot];
+				array[pivot] = temp;
+				print_array(array, size);
+			}
+			pivot++;
 		}
 	}
-	i++;
-	temp = array[i];
-	array[i] = array[end];
-	array[end] = temp;
-	print_array(array, size);
-	return (i);
+	if (pivot != i && (array[pivot] != array[i]))
+	{
+		temp = array[pivot];
+		array[pivot] = array[i];
+		array[i] = temp;
+		print_array(array, size);
+	}
+
+	return (pivot);
 }
